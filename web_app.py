@@ -360,25 +360,9 @@ def render_report_window(detections, image_name, processing_time, model_name, co
 def render_inspection():
     st.markdown("### Загрузка изображения")
     
-    # Заметная область загрузки с рамкой и инструкцией
-    st.markdown("""
-    <div style="
-        border: 3px dashed #000000;
-        background: #fafafa;
-        padding: 50px 30px;
-        text-align: center;
-        margin: 20px 0;
-        cursor: pointer;
-    ">
-        <p style="font-size: 20px; font-weight: 700; margin: 0 0 15px 0; color: #000;">ПЕРЕТАЩИТЕ ФАЙЛ СЮДА</p>
-        <p style="font-size: 16px; color: #666; margin: 0 0 10px 0;">или нажмите кнопку ниже</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
     uploaded = st.file_uploader(
-        "Добавить изображение",
+        "ПЕРЕТАЩИТЕ ФАЙЛ СЮДА ИЛИ НАЖМИТЕ",
         type=["jpg","jpeg","png","bmp"],
-        label_visibility="visible"
     )
     
     if uploaded:
