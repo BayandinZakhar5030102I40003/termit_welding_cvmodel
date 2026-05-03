@@ -85,6 +85,9 @@ st.markdown("""
     [data-testid="stFileUploader"] svg { display: none !important; }
     [data-testid="stFileUploader"] span { display: none !important; }
     [data-testid="stFileUploader"] { border: 2px dashed #000000 !important; padding: 40px !important; background: #fafafa !important; }
+    [data-testid="stFileUploader"] svg {
+        display: none !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
