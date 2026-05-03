@@ -484,11 +484,10 @@ def main():
         # График зависимости F-beta
         st.markdown("### F-beta Score: что это значит?")
         st.markdown("""
-        - **F1 (beta=1)** — баланс между Precision и Recall
-        - **F2 (beta=2)** — Recall важнее Precision в 2 раза (меньше пропущенных дефектов)
-        - **F3 (beta=3)** — максимальный приоритет на поиск всех дефектов
-        """)
-    
+       st.markdown("### F-beta Score")
+    st.markdown("- F1 (beta=1) - баланс Precision и Recall")
+    st.markdown("- F2 (beta=2) - Recall важнее в 2 раза")
+    st.markdown("- F3 (beta=3) - максимальный приоритет Recall")
         st.markdown(f'<div class="footer"><p>Termit Weld CV &copy; {datetime.now().year}</p></div>', unsafe_allow_html=True)
 
 
