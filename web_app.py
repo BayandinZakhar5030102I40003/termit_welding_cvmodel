@@ -408,7 +408,8 @@ def render_inspection():
     
     if uploaded:
         image = Image.open(uploaded)
-         if image.mode in ('RGBA', 'LA', 'P'):
+        # Конвертируем RGBA в RGB
+        if image.mode in ('RGBA', 'LA', 'P'):
             image = image.convert('RGB')
         st.image(image, use_container_width=True)
         
