@@ -335,9 +335,8 @@ def render_report_window(detections, image_name, processing_time, model_name, co
 def render_inspection():
     st.markdown("### Загрузка изображения")
     
-    # Чистая зона загрузки без стрелок
     uploaded = st.file_uploader(
-        "ПЕРЕТАЩИТЕ ИЗОБРАЖЕНИЕ СВАРНОГО ШВА",
+        "Перетащите изображение сварного шва или нажмите здесь",
         type=["jpg","jpeg","png","bmp"],
         label_visibility="visible"
     )
