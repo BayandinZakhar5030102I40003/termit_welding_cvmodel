@@ -391,9 +391,28 @@ def render_report_window(detections, image_name, processing_time, model_name, co
 def render_inspection():
     st.markdown("### Загрузка изображения")
     
+    # Явная кнопка с крупным текстом
+    st.markdown("""
+    <div style="
+        border: 3px dashed #000;
+        background: #f5f5f5;
+        padding: 40px;
+        text-align: center;
+        margin-bottom: 10px;
+    ">
+        <p style="font-size: 18px; font-weight: 700; color: #000; margin: 0;">
+            ПЕРЕТАЩИТЕ ИЗОБРАЖЕНИЕ СВАРНОГО ШВА
+        </p>
+        <p style="font-size: 14px; color: #666; margin: 10px 0 0 0;">
+            JPG, JPEG, PNG, BMP
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    
     uploaded = st.file_uploader(
-        "ПЕРЕТАЩИТЕ ИЗОБРАЖЕНИЕ СВАРНОГО ШВА ИЛИ НАЖМИТЕ ДЛЯ ВЫБОРА",
+        "",
         type=["jpg","jpeg","png","bmp"],
+        label_visibility="collapsed"
     )
     
     if uploaded:
@@ -402,11 +421,8 @@ def render_inspection():
         
         if st.button("АНАЛИЗИРОВАТЬ", type="primary", use_container_width=True):
             return image, True, uploaded.name
-    else:
-        st.caption("Поддерживаемые форматы: JPG, JPEG, PNG, BMP")
     
     return None, False, ""
-
 
 # ============================================
 # ГЛАВНАЯ
