@@ -136,6 +136,16 @@ st.markdown("""
     .stSelectbox [data-baseweb="select"] {
         position: relative !important;
     }
+    [data-testid="stFileUploader"] {
+    border: none !important;
+    padding: 0 !important;
+}
+
+[data-testid="stFileUploader"] section {
+    border: 2px dashed #000000 !important;
+    padding: 40px !important;
+    background: #fafafa !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -411,19 +421,36 @@ def render_report_window(detections, image_name, processing_time, model_name, co
 def render_inspection():
     st.markdown("### Загрузка изображения")
     
+    # Стилизованная зона загрузки
+    st.markdown("""
+    <div style="
+        border: 2px dashed #000000;
+        padding: 40px;
+        text-align: center;
+        margin-bottom: 20px;
+        background: #fafafa;
+    ">
+        <p style="font-size: 18px; font-weight: 600; margin-bottom: 10px;">ПЕРЕТАЩИТЕ ФАЙЛ СЮДА</p>
+        <p style="color: #888888; font-size: 14px;">или нажмите для выбора</p>
+        <p style="color: #bbbbbb; font-size: 12px; margin-top: 15px;">JPG, JPEG, PNG, BMP</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
     uploaded = st.file_uploader(
-        "ПЕРЕТАЩИТЕ ИЗОБРАЖЕНИЕ СВАРНОГО ШВА СЮДА",
+        "",
         type=["jpg","jpeg","png","bmp"],
+        label_visibility="collapsed"
     )
-    st.caption("JPG, JPEG, PNG, BMP")
     
-    if uploaded:
-        image = Image.open(uploaded)
-        st.image(image, use_container_width=True)
-        
-        if st.button("АНАЛИЗИРОВАТЬ", type="primary", use_container_width=True):
-            return image, True, uploaded.name
+    if not uploaded:
+        st.info("Загрузите изображение сварного шва для анализа")
+        return None, False, ""
     
+    image = Image.open(uploaded)
+    st.image(image, use_container_width=True)
+    
+    analyze_btn = st.button("АНАЛИЗИРОВАТЬ", type="primary", use_container_width=True)
+    if analyze_btn: return image, True, uploaded.name
     return None, False, ""
 
 # ============================================
