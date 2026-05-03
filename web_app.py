@@ -40,97 +40,27 @@ st.markdown("""
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
     * { font-family: 'Inter', sans-serif !important; }
     h1, h2, h3, h4 { font-family: 'Inter', sans-serif !important; font-weight: 700 !important; }
-    p, li, span, div, label { font-family: 'Inter', sans-serif !important; }
     .stApp { background: #ffffff; }
 
-    .header {
-        background: #000000; padding: 30px 35px; margin-bottom: 30px;
-        display: flex; align-items: center;
-    }
-    .header-logo {
-        background: #ffffff; color: #000000; font-size: 1.6rem; font-weight: 800;
-        width: 55px; height: 55px; display: flex; align-items: center;
-        justify-content: center; margin-right: 20px;
-    }
-    .header-text h1 { color: #ffffff !important; margin: 0; font-size: 2rem; font-weight: 800; }
-    .header-text p { color: #999999 !important; margin: 5px 0 0 0; font-size: 1rem; font-weight: 400; }
+    .header { background: #000; padding: 30px 35px; margin-bottom: 30px; display: flex; align-items: center; }
+    .header-logo { background: #fff; color: #000; font-size: 1.6rem; font-weight: 800; width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; margin-right: 20px; }
+    .header-text h1 { color: #fff !important; margin: 0; font-size: 2rem; font-weight: 800; }
+    .header-text p { color: #999 !important; margin: 5px 0 0 0; font-size: 1rem; font-weight: 400; }
 
-    .stat-card {
-        background: #ffffff; padding: 25px; border: 1px solid #e5e5e5; text-align: left;
-    }
-    .stat-card .number { font-size: 2.8rem; font-weight: 800; color: #000000; }
-    .stat-card .label { color: #888888 !important; font-size: 0.85rem; margin-top: 5px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+    .stat-card { background: #fff; padding: 25px; border: 1px solid #e5e5e5; text-align: left; }
+    .stat-card .number { font-size: 2.8rem; font-weight: 800; color: #000; }
+    .stat-card .label { color: #888 !important; font-size: 0.85rem; margin-top: 5px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
 
-    .stButton > button {
-        background: #000000 !important; color: #ffffff !important; border: none !important;
-        font-weight: 600 !important; padding: 12px 30px !important; font-size: 14px !important;
-        text-transform: uppercase !important; letter-spacing: 1px !important;
-    }
+    .stButton > button { background: #000 !important; color: #fff !important; border: none !important; font-weight: 600 !important; padding: 12px 30px !important; font-size: 14px !important; text-transform: uppercase !important; letter-spacing: 1px !important; }
 
     [data-testid="stSidebar"] { background: #fafafa; border-right: 1px solid #e5e5e5; }
-    [data-testid="stSidebar"] * { color: #000000 !important; }
+    [data-testid="stSidebar"] * { color: #000 !important; }
 
-    .footer { border-top: 1px solid #e5e5e5; padding: 40px 0; margin-top: 50px; text-align: center; color: #888888; }
-
+    .footer { border-top: 1px solid #e5e5e5; padding: 40px 0; margin-top: 50px; text-align: center; color: #888; }
     .stTabs [data-baseweb="tab-list"] { gap: 0; background: transparent; padding: 0; border-bottom: 1px solid #e5e5e5; }
-    .stTabs [data-baseweb="tab"] { background: transparent; border-radius: 0; padding: 15px 25px; color: #888888 !important; font-weight: 500; border-bottom: 2px solid transparent; }
-    .stTabs [aria-selected="true"] { background: transparent !important; color: #000000 !important; border-bottom: 2px solid #000000; font-weight: 700; }
-
+    .stTabs [data-baseweb="tab"] { background: transparent; border-radius: 0; padding: 15px 25px; color: #888 !important; font-weight: 500; border-bottom: 2px solid transparent; }
+    .stTabs [aria-selected="true"] { background: transparent !important; color: #000 !important; border-bottom: 2px solid #000; font-weight: 700; }
     img { max-height: 450px !important; object-fit: contain !important; }
-
-    /* File uploader - единый стиль */
-    [data-testid="stFileUploader"] {
-        border: 3px dashed #000 !important;
-        background: #f5f5f5 !important;
-        padding: 40px !important;
-        text-align: center !important;
-    }
-    [data-testid="stFileUploader"] section {
-        border: none !important;
-        background: transparent !important;
-    }
-    [data-testid="stFileUploader"] svg {
-        display: none !important;
-    }
-    [data-testid="stFileUploader"] span {
-        display: none !important;
-    }
-    [data-testid="stFileUploader"] button small {
-        display: none !important;
-    }
-    [data-testid="stFileUploader"] button {
-        font-size: 18px !important;
-        font-weight: 700 !important;
-        color: #000 !important;
-        background: transparent !important;
-        border: none !important;
-        padding: 15px 30px !important;
-    }
-
-    /* Сайдбар - убираем стрелки */
-    [data-testid="stSidebar"] svg {
-        display: none !important;
-    }
-    [data-testid="stFileUploader"] svg,
-[data-testid="stFileUploader"] svg *,
-[data-testid="stFileUploader"] button svg,
-[data-testid="stFileUploader"] label svg,
-[data-testid="stFileUploader"] span svg,
-[data-testid="stFileUploader"] div svg,
-[data-testid="stFileUploader"] [class*="icon"] {
-    display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    width: 0 !important;
-    height: 0 !important;
-}
-
-[data-testid="stFileUploader"]:hover svg,
-[data-testid="stFileUploader"]:hover [class*="icon"] {
-    display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-}
 </style>
 """, unsafe_allow_html=True)
 # ============================================
@@ -405,11 +335,12 @@ def render_report_window(detections, image_name, processing_time, model_name, co
 def render_inspection():
     st.markdown("### Загрузка изображения")
     
+    # Чистая зона загрузки без стрелок
     uploaded = st.file_uploader(
-        "ПЕРЕТАЩИТЕ ИЗОБРАЖЕНИЕ СВАРНОГО ШВА СЮДА",
+        "ПЕРЕТАЩИТЕ ИЗОБРАЖЕНИЕ СВАРНОГО ШВА",
         type=["jpg","jpeg","png","bmp"],
+        label_visibility="visible"
     )
-    st.caption("JPG, JPEG, PNG, BMP")
     
     if uploaded:
         image = Image.open(uploaded)
@@ -419,7 +350,6 @@ def render_inspection():
             return image, True, uploaded.name
     
     return None, False, ""
-
 # ============================================
 # ГЛАВНАЯ
 # ============================================
