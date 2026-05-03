@@ -408,10 +408,12 @@ def main():
         if model_choice == "Ансамбль":
             models, error = load_ensemble()
         else:
-            model, error = load_single_model(MODEL_PATHS[model_choice]); models = model
+            model, error = load_single_model(MODEL_PATHS[model_choice])
+            models = model
 
         if error:
-            st.error(error); models = None
+            st.error(error)
+            models = None
         else:
             st.success("Готово")
 
@@ -483,7 +485,9 @@ def main():
         st.markdown("- **F1 (beta=1)** - баланс Precision и Recall")
         st.markdown("- **F2 (beta=2)** - Recall важнее в 2 раза")
         st.markdown("- **F3 (beta=3)** - максимальный приоритет Recall")
- st.markdown(f'<div class="footer"><p>Termit Weld CV &copy; {datetime.now().year}</p></div>', unsafe_allow_html=True)
+
+    st.markdown(f'<div class="footer"><p>Termit Weld CV &copy; {datetime.now().year}</p></div>', unsafe_allow_html=True)
+
 
 if __name__ == "__main__":
     main()
