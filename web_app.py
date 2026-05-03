@@ -90,8 +90,31 @@ st.markdown("""
     [data-testid="stFileUploader"] svg {
         display: none !important;
     }
-    [data-testid="stSidebar"] svg {
+       [data-testid="stSidebar"] svg {
         display: none !important;
+    }
+    
+    /* Скрываем текст иконки и показываем обычную стрелку */
+    .stSelectbox [data-baseweb="select"] span:contains("keyboard_double_arrows_left"),
+    .stSelectbox span.material-icons,
+    .stSlider span.material-icons {
+        display: none !important;
+    }
+    
+
+    .stSelectbox [data-baseweb="select"]::after {
+        content: "▼" !important;
+        position: absolute !important;
+        right: 12px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        font-size: 12px !important;
+        color: #000 !important;
+        pointer-events: none !important;
+    }
+    
+    .stSelectbox [data-baseweb="select"] {
+        position: relative !important;
     }
 </style>
 """, unsafe_allow_html=True)
