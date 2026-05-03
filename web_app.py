@@ -360,11 +360,25 @@ def render_report_window(detections, image_name, processing_time, model_name, co
 def render_inspection():
     st.markdown("### Загрузка изображения")
     
-    # Большая кнопка загрузки
+    # Заметная область загрузки с рамкой и инструкцией
+    st.markdown("""
+    <div style="
+        border: 3px dashed #000000;
+        background: #fafafa;
+        padding: 50px 30px;
+        text-align: center;
+        margin: 20px 0;
+        cursor: pointer;
+    ">
+        <p style="font-size: 20px; font-weight: 700; margin: 0 0 15px 0; color: #000;">ПЕРЕТАЩИТЕ ФАЙЛ СЮДА</p>
+        <p style="font-size: 16px; color: #666; margin: 0 0 10px 0;">или нажмите кнопку ниже</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
     uploaded = st.file_uploader(
         "Добавить изображение",
         type=["jpg","jpeg","png","bmp"],
-        help="Перетащите файл или нажмите для выбора"
+        label_visibility="visible"
     )
     
     if uploaded:
@@ -373,21 +387,6 @@ def render_inspection():
         
         if st.button("АНАЛИЗИРОВАТЬ", type="primary", use_container_width=True):
             return image, True, uploaded.name
-    else:
-        # Яркий блок для привлечения внимания
-        st.markdown("""
-        <div style="
-            background: #000;
-            color: #fff;
-            padding: 30px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: 600;
-            margin: 20px 0;
-        ">
-        ЗАГРУЗИТЕ ИЗОБРАЖЕНИЕ СВАРНОГО ШВА
-        </div>
-        """, unsafe_allow_html=True)
     
     return None, False, ""
 
