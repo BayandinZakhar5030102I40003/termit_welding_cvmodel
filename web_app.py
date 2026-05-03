@@ -61,9 +61,7 @@ st.markdown("""
     .stTabs [data-baseweb="tab"] { background: transparent; border-radius: 0; padding: 15px 25px; color: #888 !important; font-weight: 500; border-bottom: 2px solid transparent; }
     .stTabs [aria-selected="true"] { background: transparent !important; color: #000 !important; border-bottom: 2px solid #000; font-weight: 700; }
     img { max-height: 450px !important; object-fit: contain !important; }
-    [data-testid="stFileUploader"] {
-    display: none !important;
-}
+  
 </style>
 """, unsafe_allow_html=True)
 # ============================================
