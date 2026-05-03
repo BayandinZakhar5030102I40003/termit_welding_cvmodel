@@ -136,16 +136,7 @@ st.markdown("""
     .stSelectbox [data-baseweb="select"] {
         position: relative !important;
     }
-    [data-testid="stFileUploader"] {
-    border: none !important;
-    padding: 0 !important;
-}
 
-[data-testid="stFileUploader"] section {
-    border: 2px dashed #000000 !important;
-    padding: 40px !important;
-    background: #fafafa !important;
-}
 </style>
 """, unsafe_allow_html=True)
 
