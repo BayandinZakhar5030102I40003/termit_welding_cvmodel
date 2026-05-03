@@ -19,6 +19,9 @@ from datetime import datetime, timedelta
 import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
+import torch
+torch.cuda.is_available = lambda: False
+torch.cuda.device_count = lambda: 0
 
 # ============================================
 # НАСТРОЙКА СТРАНИЦЫ
