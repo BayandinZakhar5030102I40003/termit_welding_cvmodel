@@ -334,17 +334,35 @@ def render_report_window(detections, image_name, processing_time, model_name, co
 # ============================================
 
 def render_inspection():
-    st.markdown("### Загрузка изображения")
-      # Минимальный CSS - оставить только иконку
+    # Убираем заголовок "Загрузка изображения"
+    # st.markdown("### Загрузка изображения")  # ЗАКОММЕНТИРОВАТЬ ЭТУ СТРОКУ
+    
+    # CSS для скрытия всех текстов внутри file_uploader
     st.markdown("""
     <style>
-    .stFileUploader button span:not(:first-child) {
-        display: none;
-    }
-    .stFileUploader button {
-        width: 100%;
-        justify-content: center;
-    }
+        /* Скрыть заголовок "upload" и "200MB per file..." */
+        [data-testid="stFileUploader"] div[data-testid="stMarkdownContainer"] {
+            display: none !important;
+        }
+        
+        /* Скрыть текст "Browse files" на кнопке */
+        .stFileUploader button span {
+            display: none !important;
+        }
+        
+        /* Сделать кнопку компактной, но видимой */
+        .stFileUploader button {
+            width: auto !important;
+            min-width: 120px !important;
+            justify-content: center !important;
+        }
+        
+        /* Добавить свой текст на кнопку */
+        .stFileUploader button::before {
+            content: "ВЫБРАТЬ ФАЙЛ" !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+        }
     </style>
     """, unsafe_allow_html=True)
     
