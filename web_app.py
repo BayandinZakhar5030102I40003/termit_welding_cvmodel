@@ -338,7 +338,8 @@ def render_inspection():
     uploaded = st.file_uploader(
         "Перетащите изображение сварного шва или нажмите здесь",
         type=["jpg","jpeg","png","bmp"],
-        label_visibility="visible"
+        label_visibility="visible",
+        help=""  # Убирает подсказку "200MB per file..."
     )
     
     if uploaded:
