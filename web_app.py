@@ -423,34 +423,47 @@ def main():
     with tab1:
         image, analyze, image_name = render_inspection()
         if image and analyze and models:
-            import time
-            start = time.time()
-            with st.spinner("Анализ..."):
-                results = predict_ensemble(models, image, conf) if model_choice == "Ансамбль" else predict_single(
-                    models, image, conf)
-            proc_time = time.time() - start
-
-            col1, col2 = st.columns(2)
-            with col1:
-                st.image(image, use_container_width=True)
-            with col2:
-                st.image(results[0].plot(), use_container_width=True)
-
-            detections = []
-            if results[0].boxes is not None:
-                model_names = results[0].names
-                unique = {}
-                for box in results[0].boxes:
-                    cls_id = int(box.cls[0])
-                    name = model_names.get(cls_id, f"Класс {cls_id}")
-                    c = float(box.conf[0])
-                    if name not in unique or c > unique[name]['confidence']:
-                        unique[name] = {"class": name, "confidence": c}
-                detections = sorted(unique.values(), key=lambda x: x['confidence'], reverse=True)
-
-            st.markdown("---")
-            render_report_window(detections, image_name, proc_time, model_choice, conf)
-
+            try:
+                import time
+                start = time.time()
+                with st.spinner("Анализ..."):
+                    if model_choice == "Ансамбль":
+                        results = predict_ensemble(models, image, conf)
+                    else:
+                        results = predict_single(models, image, conf)
+                    
+                    if results is None:
+                        st.error("Ошибка при анализе изображения. Попробуйте другое изображение или перезагрузите приложение.")
+                        st.stop()
+                        
+                proc_time = time.time() - start
+    
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.image(image, use_container_width=True)
+                with col2:
+                    if results[0] is not None:
+                        st.image(results[0].plot(), use_container_width=True)
+                    else:
+                        st.warning("Результаты не получены")
+    
+                detections = []
+                if results[0].boxes is not None:
+                    model_names = results[0].names
+                    unique = {}
+                    for box in results[0].boxes:
+                        cls_id = int(box.cls[0])
+                        name = model_names.get(cls_id, f"Класс {cls_id}")
+                        c = float(box.conf[0])
+                        if name not in unique or c > unique[name]['confidence']:
+                            unique[name] = {"class": name, "confidence": c}
+                    detections = sorted(unique.values(), key=lambda x: x['confidence'], reverse=True)
+    
+                st.markdown("---")
+                render_report_window(detections, image_name, proc_time, model_choice, conf)
+            except Exception as e:
+                st.error(f"Произошла ошибка: {str(e)}")
+                st.info("Попробуйте использовать другое изображение или перезагрузите страницу.")
     with tab2:
         render_dashboard()
 
