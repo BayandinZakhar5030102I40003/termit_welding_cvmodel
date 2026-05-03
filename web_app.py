@@ -61,6 +61,26 @@ st.markdown("""
     .stTabs [data-baseweb="tab"] { background: transparent; border-radius: 0; padding: 15px 25px; color: #888 !important; font-weight: 500; border-bottom: 2px solid transparent; }
     .stTabs [aria-selected="true"] { background: transparent !important; color: #000 !important; border-bottom: 2px solid #000; font-weight: 700; }
     img { max-height: 450px !important; object-fit: contain !important; }
+
+     button[kind="icon"] {
+        display: none !important;
+    }
+    
+    /* Или более точно - скрыть иконку keyboard_double_arrow */
+    [data-testid="collapsedControl"] {
+        display: none !important;
+    }
+    
+    /* Полностью отключить возможность сворачивания sidebar */
+    .stSidebar > div:first-child {
+        pointer-events: none !important;
+    }
+    
+    /* Скрыть саму иконку при наведении */
+    .stSidebar:hover [data-testid="collapsedControl"] {
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
   
 </style>
 """, unsafe_allow_html=True)
