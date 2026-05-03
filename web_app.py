@@ -66,26 +66,7 @@ st.markdown("""
     [data-testid="collapsedControl"] {
         display: none !important;
     }
-    // Скрываем контроллер sidebar при загрузке
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            const controls = document.querySelectorAll('[data-testid="collapsedControl"]');
-            controls.forEach(control => {
-                control.style.display = 'none';
-                control.style.visibility = 'hidden';
-            });
-        }, 100);
-    });
-    
-    // Наблюдатель за изменениями DOM (для мобильных)
-    const observer = new MutationObserver(function(mutations) {
-        const controls = document.querySelectorAll('[data-testid="collapsedControl"]');
-        controls.forEach(control => {
-            control.style.display = 'none';
-            control.style.visibility = 'hidden';
-        });
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
+
 </style>
 """, unsafe_allow_html=True)
 # ============================================
