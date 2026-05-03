@@ -111,6 +111,26 @@ st.markdown("""
     [data-testid="stSidebar"] svg {
         display: none !important;
     }
+    [data-testid="stFileUploader"] svg,
+[data-testid="stFileUploader"] svg *,
+[data-testid="stFileUploader"] button svg,
+[data-testid="stFileUploader"] label svg,
+[data-testid="stFileUploader"] span svg,
+[data-testid="stFileUploader"] div svg,
+[data-testid="stFileUploader"] [class*="icon"] {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+[data-testid="stFileUploader"]:hover svg,
+[data-testid="stFileUploader"]:hover [class*="icon"] {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
 </style>
 """, unsafe_allow_html=True)
 # ============================================
