@@ -5,10 +5,10 @@ Termit Weld CV - Профессиональная система контрол�
 """
 
 import streamlit as st
-try:
-    import cv2
-except ImportError:
-    pass
+#try:
+#    import cv2
+#except ImportError:
+#    pass
 import numpy as np
 from ultralytics import YOLO
 from PIL import Image
