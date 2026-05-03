@@ -90,6 +90,26 @@ st.markdown("""
     [data-testid="stFileUploader"] svg {
         display: none !important;
     }
+    [data-testid="stFileUploader"] {
+    border: 3px dashed #000 !important;
+    background: #f5f5f5 !important;
+    padding: 30px !important;
+    text-align: center !important;
+}
+
+[data-testid="stFileUploader"] section {
+    border: none !important;
+    background: transparent !important;
+}
+
+[data-testid="stFileUploader"] button {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #000 !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 15px 30px !important;
+}
        [data-testid="stSidebar"] svg {
         display: none !important;
     }
@@ -391,29 +411,11 @@ def render_report_window(detections, image_name, processing_time, model_name, co
 def render_inspection():
     st.markdown("### Загрузка изображения")
     
-    # Явная кнопка с крупным текстом
-    st.markdown("""
-    <div style="
-        border: 3px dashed #000;
-        background: #f5f5f5;
-        padding: 40px;
-        text-align: center;
-        margin-bottom: 10px;
-    ">
-        <p style="font-size: 18px; font-weight: 700; color: #000; margin: 0;">
-            ПЕРЕТАЩИТЕ ИЗОБРАЖЕНИЕ СВАРНОГО ШВА
-        </p>
-        <p style="font-size: 14px; color: #666; margin: 10px 0 0 0;">
-            JPG, JPEG, PNG, BMP
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    
     uploaded = st.file_uploader(
-        "",
+        "ПЕРЕТАЩИТЕ ИЗОБРАЖЕНИЕ СВАРНОГО ШВА СЮДА",
         type=["jpg","jpeg","png","bmp"],
-        label_visibility="collapsed"
     )
+    st.caption("JPG, JPEG, PNG, BMP")
     
     if uploaded:
         image = Image.open(uploaded)
