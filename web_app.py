@@ -37,9 +37,6 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-svg {
-    display: none !important;
-}
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
     * { font-family: 'Inter', sans-serif !important; }
     h1, h2, h3, h4 { font-family: 'Inter', sans-serif !important; font-weight: 700 !important; }
