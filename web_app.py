@@ -164,15 +164,41 @@ def load_ensemble():
         return None, str(e)
 
 
-def predict_single(model, image, conf):
-    return model.predict(np.array(image), conf=conf, verbose=False)
-
-
 def predict_ensemble(models, image, conf):
-    nano, small = models
-    r1 = nano.predict(np.array(image), conf=conf, verbose=False)
-    r2 = small.predict(np.array(image), conf=conf, verbose=False)
-    return r1 if r1[0].boxes else r2
+    try:
+        nano, small = models
+        # Конвертируем изображение в RGB (убираем альфа-канал)
+        img_array = np.array(image)
+        if len(img_array.shape) == 3 and img_array.shape[2] == 4:
+            image = image.convert('RGB')
+        
+        r1 = nano.predict(np.array(image), conf=conf, verbose=False)
+        r2 = small.predict(np.array(image), conf=conf, verbose=False)
+        
+        # Ансамбль: объединяем результаты
+        if r1[0].boxes is None and r2[0].boxes is None:
+            return r1
+        if r1[0].boxes is None:
+            return r2
+        if r2[0].boxes is None:
+            return r1
+        
+        return r1 if len(r1[0].boxes) >= len(r2[0].boxes) else r2
+    except Exception as e:
+        st.error(f"Ошибка ансамбля: {e}")
+        return None
+
+
+def predict_single(model, image, conf):
+    try:
+        # Конвертируем в RGB (убираем альфа-канал)
+        img_array = np.array(image)
+        if len(img_array.shape) == 3 and img_array.shape[2] == 4:
+            image = image.convert('RGB')
+        return model.predict(np.array(image), conf=conf, verbose=False)
+    except Exception as e:
+        st.error(f"Ошибка предсказания: {e}")
+        return None
 
 
 # ============================================
