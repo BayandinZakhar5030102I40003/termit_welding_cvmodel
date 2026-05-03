@@ -18,7 +18,6 @@ import pandas as pd
 from datetime import datetime, timedelta
 import plotly.graph_objects as go
 import plotly.express as px
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 from plotly.subplots import make_subplots
 
 # ============================================
@@ -38,6 +37,7 @@ st.set_page_config(
 
 st.markdown("""
 <style>
+    @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
     * { font-family: 'Inter', sans-serif !important; }
     h1, h2, h3, h4 { font-family: 'Inter', sans-serif !important; font-weight: 700 !important; }
