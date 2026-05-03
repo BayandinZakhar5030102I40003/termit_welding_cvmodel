@@ -38,8 +38,6 @@ st.set_page_config(
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-    @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-    
     * { font-family: 'Inter', sans-serif !important; }
     h1, h2, h3, h4 { font-family: 'Inter', sans-serif !important; font-weight: 700 !important; }
     p, li, span, div, label { font-family: 'Inter', sans-serif !important; }
@@ -54,7 +52,7 @@ st.markdown("""
         width: 55px; height: 55px; display: flex; align-items: center;
         justify-content: center; margin-right: 20px;
     }
-    .header-text h1 { color: #ffffff !important; margin: 0; font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; }
+    .header-text h1 { color: #ffffff !important; margin: 0; font-size: 2rem; font-weight: 800; }
     .header-text p { color: #999999 !important; margin: 5px 0 0 0; font-size: 1rem; font-weight: 400; }
 
     .stat-card {
@@ -66,9 +64,8 @@ st.markdown("""
     .stButton > button {
         background: #000000 !important; color: #ffffff !important; border: none !important;
         font-weight: 600 !important; padding: 12px 30px !important; font-size: 14px !important;
-        text-transform: uppercase !important; letter-spacing: 1px !important; transition: all 0.2s !important;
+        text-transform: uppercase !important; letter-spacing: 1px !important;
     }
-    .stButton > button:hover { background: #333333 !important; }
 
     [data-testid="stSidebar"] { background: #fafafa; border-right: 1px solid #e5e5e5; }
     [data-testid="stSidebar"] * { color: #000000 !important; }
@@ -81,86 +78,41 @@ st.markdown("""
 
     img { max-height: 450px !important; object-fit: contain !important; }
 
-    [data-testid="stFileUploader"] button { font-size: 0 !important; }
-    [data-testid="stFileUploader"] button::after { content: "ВЫБРАТЬ ФАЙЛ" !important; font-size: 14px !important; font-weight: 600 !important; letter-spacing: 1px !important; }
-    [data-testid="stFileUploader"] button small { display: none !important; }
-    [data-testid="stFileUploader"] svg { display: none !important; }
-    [data-testid="stFileUploader"] span { display: none !important; }
-    [data-testid="stFileUploader"] { border: 2px dashed #000000 !important; padding: 40px !important; background: #fafafa !important; }
-    [data-testid="stFileUploader"] svg {
-        display: none !important;
-    }
+    /* File uploader - единый стиль */
     [data-testid="stFileUploader"] {
-    border: 3px dashed #000 !important;
-    background: #f5f5f5 !important;
-    padding: 30px !important;
-    text-align: center !important;
-}
-
-[data-testid="stFileUploader"] section {
-    border: none !important;
-    background: transparent !important;
-}
-
-[data-testid="stFileUploader"] button {
-    font-size: 18px !important;
-    font-weight: 700 !important;
-    color: #000 !important;
-    background: transparent !important;
-    border: none !important;
-    padding: 15px 30px !important;
-}
-       [data-testid="stSidebar"] svg {
-        display: none !important;
+        border: 3px dashed #000 !important;
+        background: #f5f5f5 !important;
+        padding: 40px !important;
+        text-align: center !important;
     }
-    
-    /* Скрываем текст иконки и показываем обычную стрелку */
-    .stSelectbox [data-baseweb="select"] span:contains(">"),
-    .stSelectbox span.material-icons,
-    .stSlider span.material-icons {
-        display: none !important;
+    [data-testid="stFileUploader"] section {
+        border: none !important;
+        background: transparent !important;
     }
-    
-
-    .stSelectbox [data-baseweb="select"]::after {
-        content: "▼" !important;
-        position: absolute !important;
-        right: 12px !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        font-size: 12px !important;
-        color: #000 !important;
-        pointer-events: none !important;
-    }
-    
-    .stSelectbox [data-baseweb="select"] {
-        position: relative !important;
-    }
-
     [data-testid="stFileUploader"] svg {
-    display: none !important;
-}
+        display: none !important;
+    }
+    [data-testid="stFileUploader"] span {
+        display: none !important;
+    }
+    [data-testid="stFileUploader"] button small {
+        display: none !important;
+    }
+    [data-testid="stFileUploader"] button {
+        font-size: 18px !important;
+        font-weight: 700 !important;
+        color: #000 !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 15px 30px !important;
+    }
 
-/* Убираем текст с иконками */
-[data-testid="stFileUploader"] span {
-    display: none !important;
-}
-
-/* Убираем "Browse files" */
-[data-testid="stFileUploader"] button small {
-    display: none !important;
-}
-
-/* Показываем только наш текст */
-[data-testid="stFileUploader"] button::after {
-    content: "ВЫБРАТЬ ФАЙЛ" !important;
-    font-size: 18px !important;
-    font-weight: 700 !important;
-    color: #000 !important;
-}
+    /* Сайдбар - убираем стрелки */
+    [data-testid="stSidebar"] svg {
+        display: none !important;
+    }
 </style>
 """, unsafe_allow_html=True)
-
 # ============================================
 # RE-IMPORT (after st.set_page_config)
 # All imports remain at top
