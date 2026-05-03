@@ -61,6 +61,9 @@ st.markdown("""
     .stTabs [data-baseweb="tab"] { background: transparent; border-radius: 0; padding: 15px 25px; color: #888 !important; font-weight: 500; border-bottom: 2px solid transparent; }
     .stTabs [aria-selected="true"] { background: transparent !important; color: #000 !important; border-bottom: 2px solid #000; font-weight: 700; }
     img { max-height: 450px !important; object-fit: contain !important; }
+    [data-testid="stFileUploader"] {
+    display: none !important;
+}
 </style>
 """, unsafe_allow_html=True)
 # ============================================
@@ -334,8 +337,13 @@ def render_report_window(detections, image_name, processing_time, model_name, co
 
 def render_inspection():
     st.markdown("### Загрузка изображения")
-  
-    uploaded = None  
+    
+    uploaded = st.file_uploader(
+        "",
+        type=["jpg","jpeg","png","bmp"],
+        label_visibility="collapsed"
+    )
+    
     if uploaded:
         image = Image.open(uploaded)
         st.image(image, use_container_width=True)
@@ -343,7 +351,6 @@ def render_inspection():
         if st.button("АНАЛИЗИРОВАТЬ", type="primary", use_container_width=True):
             return image, True, uploaded.name
     
-    st.info("Функция загрузки изображений временно отключена")
     return None, False, ""
 # ============================================
 # ГЛАВНАЯ
