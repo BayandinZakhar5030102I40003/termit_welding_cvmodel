@@ -88,6 +88,9 @@ st.markdown("""
     [data-testid="stFileUploader"] svg {
         display: none !important;
     }
+    [data-testid="stSidebar"] svg {
+    display: none !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
