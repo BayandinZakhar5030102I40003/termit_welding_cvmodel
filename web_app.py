@@ -359,18 +359,36 @@ def render_report_window(detections, image_name, processing_time, model_name, co
 
 def render_inspection():
     st.markdown("### Загрузка изображения")
-
-    uploaded = st.file_uploader("Добавить изображение", type=["jpg", "jpeg", "png", "bmp"])
-
+    
+    # Большая кнопка загрузки
+    uploaded = st.file_uploader(
+        "Добавить изображение",
+        type=["jpg","jpeg","png","bmp"],
+        help="Перетащите файл или нажмите для выбора"
+    )
+    
     if uploaded:
         image = Image.open(uploaded)
         st.image(image, use_container_width=True)
-
+        
         if st.button("АНАЛИЗИРОВАТЬ", type="primary", use_container_width=True):
             return image, True, uploaded.name
     else:
-        st.info("Загрузите изображение сварного шва для анализа")
-
+        # Яркий блок для привлечения внимания
+        st.markdown("""
+        <div style="
+            background: #000;
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 20px 0;
+        ">
+        ЗАГРУЗИТЕ ИЗОБРАЖЕНИЕ СВАРНОГО ШВА
+        </div>
+        """, unsafe_allow_html=True)
+    
     return None, False, ""
 
 
