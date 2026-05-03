@@ -95,7 +95,7 @@ st.markdown("""
     }
     
     /* Скрываем текст иконки и показываем обычную стрелку */
-    .stSelectbox [data-baseweb="select"] span:contains("keyboard_double_arrows_left"),
+    .stSelectbox [data-baseweb="select"] span:contains(">"),
     .stSelectbox span.material-icons,
     .stSlider span.material-icons {
         display: none !important;
@@ -392,7 +392,7 @@ def render_inspection():
     st.markdown("### Загрузка изображения")
     
     uploaded = st.file_uploader(
-        "ПЕРЕТАЩИТЕ ФАЙЛ СЮДА ИЛИ НАЖМИТЕ",
+        "ПЕРЕТАЩИТЕ ИЗОБРАЖЕНИЕ СВАРНОГО ШВА ИЛИ НАЖМИТЕ ДЛЯ ВЫБОРА",
         type=["jpg","jpeg","png","bmp"],
     )
     
@@ -402,6 +402,8 @@ def render_inspection():
         
         if st.button("АНАЛИЗИРОВАТЬ", type="primary", use_container_width=True):
             return image, True, uploaded.name
+    else:
+        st.caption("Поддерживаемые форматы: JPG, JPEG, PNG, BMP")
     
     return None, False, ""
 
