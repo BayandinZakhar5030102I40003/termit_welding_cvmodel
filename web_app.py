@@ -335,8 +335,21 @@ def render_report_window(detections, image_name, processing_time, model_name, co
 
 def render_inspection():
     st.markdown("### Загрузка изображения")
+      # Минимальный CSS - оставить только иконку
+    st.markdown("""
+    <style>
+    .stFileUploader button span:not(:first-child) {
+        display: none;
+    }
+    .stFileUploader button {
+        width: 100%;
+        justify-content: center;
+    }
+    </style>
+    """, unsafe_allow_html=True)
     
     uploaded = st.file_uploader(
+        "",
         type=["jpg","jpeg","png","bmp"],
         label_visibility="collapsed"
     )
