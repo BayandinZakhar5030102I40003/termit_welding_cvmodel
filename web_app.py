@@ -137,6 +137,27 @@ st.markdown("""
         position: relative !important;
     }
 
+    [data-testid="stFileUploader"] svg {
+    display: none !important;
+}
+
+/* Убираем текст с иконками */
+[data-testid="stFileUploader"] span {
+    display: none !important;
+}
+
+/* Убираем "Browse files" */
+[data-testid="stFileUploader"] button small {
+    display: none !important;
+}
+
+/* Показываем только наш текст */
+[data-testid="stFileUploader"] button::after {
+    content: "ВЫБРАТЬ ФАЙЛ" !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #000 !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
