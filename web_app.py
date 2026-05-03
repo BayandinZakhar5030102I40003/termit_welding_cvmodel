@@ -81,6 +81,45 @@ st.markdown("""
         opacity: 0 !important;
         visibility: hidden !important;
     }
+
+    [data-testid="collapsedControl"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        pointer-events: none !important;
+    }
+    
+    /* Специально для мобильных устройств */
+    @media (max-width: 768px) {
+        /* Скрыть кнопку сворачивания на телефонах */
+        [data-testid="collapsedControl"] {
+            display: none !important;
+        }
+        
+        /* Скрыть иконку, которая появляется при touch */
+        .stSidebar .css-1lsmg2y,
+        .stSidebar [data-testid="baseButton-headerNoPadding"] {
+            display: none !important;
+        }
+        
+        /* Зафиксировать sidebar в открытом состоянии */
+        .stSidebar {
+            transform: translateX(0) !important;
+        }
+        
+        /* Скрыть overlay при открытом sidebar */
+        [data-testid="stSidebarOverlay"] {
+            display: none !important;
+        }
+    }
+    
+    /* Убрать все иконки с клавиатурными стрелками */
+    svg[data-icon="keyboard-double-arrow-right"],
+    svg[data-icon="keyboard-double-arrow-left"] {
+        display: none !important;
+    }
   
 </style>
 """, unsafe_allow_html=True)
