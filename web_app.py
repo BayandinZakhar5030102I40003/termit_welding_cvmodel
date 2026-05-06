@@ -2,6 +2,10 @@
 import os
 os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "0"
 os.environ["OPENCV_LOG_LEVEL"] = "FATAL"
+
+import torch
+torch.cuda.is_available = lambda: False
+torch.cuda.device_count = lambda: 0
 try:
     import cv2
     cv2.setLogLevel(0)
