@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""
-Termit Weld CV - Профессиональная система контроля сварки
-Расширенная аналитика: F1/F2/F3, кривые по классам, PR-кривые
-"""
-
+import os
+os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "0"
+os.environ["OPENCV_LOG_LEVEL"] = "FATAL"
+try:
+    import cv2
+    cv2.setLogLevel(0)
+except:
+    pass
 import streamlit as st
 #try:
 #    import cv2
