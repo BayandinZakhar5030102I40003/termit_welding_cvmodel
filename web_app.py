@@ -1,34 +1,21 @@
 #!/usr/bin/env python3
 import os
 os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "0"
-os.environ["OPENCV_LOG_LEVEL"] = "FATAL"
 
 import torch
 torch.cuda.is_available = lambda: False
 torch.cuda.device_count = lambda: 0
-try:
-    import cv2
-    cv2.setLogLevel(0)
-except:
-    pass
+
 import streamlit as st
-#try:
-#    import cv2
-#except ImportError:
-#    pass
 import numpy as np
 from ultralytics import YOLO
 from PIL import Image
-import os
 from pathlib import Path
 import pandas as pd
 from datetime import datetime, timedelta
 import plotly.graph_objects as go
 import plotly.express as px
-from plotly.subplots import make_subplots
-import torch
-torch.cuda.is_available = lambda: False
-torch.cuda.device_count = lambda: 0
+import time
 
 # ============================================
 # НАСТРОЙКА СТРАНИЦЫ
