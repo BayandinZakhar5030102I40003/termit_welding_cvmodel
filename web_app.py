@@ -2,6 +2,15 @@
 import os
 os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "0"
 
+import sys
+import subprocess
+
+try:
+    import cv2
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "opencv-python-headless", "--quiet"])
+    import cv2
+
 import torch
 torch.cuda.is_available = lambda: False
 torch.cuda.device_count = lambda: 0
