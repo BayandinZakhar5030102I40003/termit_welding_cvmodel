@@ -127,12 +127,12 @@ st.markdown("""
         .stTabs button [class*="material"] {
         display: none !important;
         
-   [data-testid="stSidebar"] .stSelectbox div[role="button"] span,
-[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] span,
-[data-testid="stSidebar"] select + div span {
-    display: none !important;
-    visibility: hidden !important;
-}
+    [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] [role="presentation"],
+    [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] [data-baseweb="icon"],
+    [data-testid="stSidebar"] .stSelectbox svg {
+        display: none !important;
+    }
+
 
 </style>
 """, unsafe_allow_html=True)
