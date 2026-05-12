@@ -127,10 +127,12 @@ st.markdown("""
         .stTabs button [class*="material"] {
         display: none !important;
         
-    }
-    [data-testid="collapsedControl"] {
+   [data-testid="stSidebar"] .stSelectbox div[role="button"] span,
+[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] span,
+[data-testid="stSidebar"] select + div span {
     display: none !important;
-    }
+    visibility: hidden !important;
+}
 
 </style>
 """, unsafe_allow_html=True)
