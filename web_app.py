@@ -92,10 +92,6 @@ st.markdown("""
     color: #000 !important;
     }
 
-    [data-testid="collapsedControl"] svg {
-        display: none !important;
-    }
-
     [data-testid="stSidebar"] [class*="material-icons"],
     [data-testid="stSidebar"] span[class*="icon"],
     [data-testid="stSidebar"] .stSelectbox [class*="icon"],
