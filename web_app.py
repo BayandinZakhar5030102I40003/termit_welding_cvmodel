@@ -96,6 +96,22 @@ st.markdown("""
         display: none !important;
     }
 
+    [data-testid="stSidebar"] [class*="material-icons"],
+    [data-testid="stSidebar"] span[class*="icon"],
+    [data-testid="stSidebar"] .stSelectbox [class*="icon"],
+    [data-testid="stSidebar"] .stSlider [class*="icon"] {
+        display: none !important;
+    }
+    
+    [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"]::after {
+        content: "▼" !important;
+        font-size: 10px !important;
+        position: absolute !important;
+        right: 10px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+    }
+
 </style>
 """, unsafe_allow_html=True)
 # ============================================
