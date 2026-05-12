@@ -143,6 +143,10 @@ st.markdown("""
         display: none !important;
     }
 
+        [data-testid="stSidebarCollapseButton"] {
+        display: none !important;
+    }
+
 </style>
 """, unsafe_allow_html=True)
 # ============================================
