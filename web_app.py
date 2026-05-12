@@ -512,7 +512,7 @@ def main():
             st.error(error)
             models = None
         else:
-            st.success("Готово")
+            st.success("Модель готова к работе")
 
     tab1, tab2, tab3 = st.tabs(["Контроль", "Дашборд", "Информация"])
 
