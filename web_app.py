@@ -86,11 +86,6 @@ st.markdown("""
     .stTabs [aria-selected="true"] { background: transparent !important; color: #000 !important; border-bottom: 2px solid #000; font-weight: 700; }
     img { max-height: 450px !important; object-fit: contain !important; }
 
-    
-    [data-testid="collapsedControl"] {
-        display: none !important;
-    }
-
     [data-testid="collapsedControl"] button::before {
     content: "≡" !important;
     font-size: 24px !important;
