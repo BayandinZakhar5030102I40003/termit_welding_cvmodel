@@ -133,10 +133,6 @@ st.markdown("""
         
     }
 
-        [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] > span:last-child,
-        [data-testid="stSidebar"] .stSelectbox div[role="button"] span:last-child {
-        display: none !important;
-    }
 
 </style>
 """, unsafe_allow_html=True)
