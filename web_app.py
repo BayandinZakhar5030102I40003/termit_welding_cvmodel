@@ -126,11 +126,16 @@ st.markdown("""
     }
 
         .stTabs [data-baseweb="tab"] [class*="icon"],
-    .stTabs [data-baseweb="tab"] span,
-    .stTabs button svg,
-    .stTabs button [class*="material"] {
+        .stTabs [data-baseweb="tab"] span,
+        .stTabs button svg,
+        .stTabs button [class*="material"] {
         display: none !important;
         
+    }
+
+        [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] > span:last-child,
+        [data-testid="stSidebar"] .stSelectbox div[role="button"] span:last-child {
+        display: none !important;
     }
 
 </style>
