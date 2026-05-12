@@ -125,6 +125,13 @@ st.markdown("""
         overflow: hidden !important;
     }
 
+        .stTabs [data-baseweb="tab"] [class*="icon"],
+    .stTabs [data-baseweb="tab"] span,
+    .stTabs button svg,
+    .stTabs button [class*="material"] {
+        display: none !important;
+    }
+
 </style>
 """, unsafe_allow_html=True)
 # ============================================
