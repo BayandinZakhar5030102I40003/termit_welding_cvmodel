@@ -1,23 +1,41 @@
 #!/usr/bin/env python3
 import os
+
 os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "0"
+os.environ["STREAMLIT_SERVER_MAX_UPLOAD_SIZE"] = "200"
 
 import sys
 import subprocess
+import streamlit as st
 
-try:
-    import cv2
-except ImportError:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "opencv-python-headless", "--quiet"])
-    import cv2
+def ensure_opencv():
+    for _ in range(3):
+        try:
+            import cv2
+            return True
+        except ImportError:
+            subprocess.run([sys.executable, "-m", "pip", "install", "opencv-python-headless==4.8.1.78", "--quiet"])
+    return False
+
+ensure_opencv()
+
+if not ensure_opencv():
+    st.error("Не удалось установить OpenCV")
 
 import torch
+
 torch.cuda.is_available = lambda: False
 torch.cuda.device_count = lambda: 0
 
-import streamlit as st
 import numpy as np
-from ultralytics import YOLO
+
+@st.cache_resource(ttl=3600)
+def get_yolo():
+    from ultralytics import YOLO
+    return YOLO
+
+YOLO = get_yolo()
+
 from PIL import Image
 from pathlib import Path
 import pandas as pd
@@ -174,10 +192,10 @@ def predict_ensemble(models, image, conf):
         img_array = np.array(image)
         if len(img_array.shape) == 3 and img_array.shape[2] == 4:
             image = image.convert('RGB')
-        
+
         r1 = nano.predict(np.array(image), conf=conf, verbose=False)
         r2 = small.predict(np.array(image), conf=conf, verbose=False)
-        
+
         # Ансамбль: объединяем результаты
         if r1[0].boxes is None and r2[0].boxes is None:
             return r1
@@ -185,7 +203,7 @@ def predict_ensemble(models, image, conf):
             return r2
         if r2[0].boxes is None:
             return r1
-        
+
         return r1 if len(r1[0].boxes) >= len(r2[0].boxes) else r2
     except Exception as e:
         st.error(f"Ошибка ансамбля: {e}")
@@ -373,7 +391,7 @@ def render_report_window(detections, image_name, processing_time, model_name, co
 def render_inspection():
     # Убираем заголовок "Загрузка изображения"
     # st.markdown("### Загрузка изображения")  # ЗАКОММЕНТИРОВАТЬ ЭТУ СТРОКУ
-    
+
     # CSS для скрытия всех текстов внутри file_uploader
     st.markdown("""
     <style>
@@ -381,19 +399,19 @@ def render_inspection():
         [data-testid="stFileUploader"] div[data-testid="stMarkdownContainer"] {
             display: none !important;
         }
-        
+
         /* Скрыть текст "Browse files" на кнопке */
         .stFileUploader button span {
             display: none !important;
         }
-        
+
         /* Сделать кнопку компактной, но видимой */
         .stFileUploader button {
             width: auto !important;
             min-width: 120px !important;
             justify-content: center !important;
         }
-        
+
         /* Добавить свой текст на кнопку */
         .stFileUploader button::before {
             content: "ВЫБРАТЬ ФАЙЛ" !important;
@@ -402,24 +420,26 @@ def render_inspection():
         }
     </style>
     """, unsafe_allow_html=True)
-    
+
     uploaded = st.file_uploader(
         "",
-        type=["jpg","jpeg","png","bmp"],
+        type=["jpg", "jpeg", "png", "bmp"],
         label_visibility="collapsed"
     )
-    
+
     if uploaded:
         image = Image.open(uploaded)
         # Конвертируем RGBA в RGB
         if image.mode in ('RGBA', 'LA', 'P'):
             image = image.convert('RGB')
         st.image(image, use_container_width=True)
-        
+
         if st.button("АНАЛИЗИРОВАТЬ", type="primary", use_container_width=True):
             return image, True, uploaded.name
-    
+
     return None, False, ""
+
+
 # ============================================
 # ГЛАВНАЯ
 # ============================================
@@ -466,13 +486,14 @@ def main():
                         results = predict_ensemble(models, image, conf)
                     else:
                         results = predict_single(models, image, conf)
-                    
+
                     if results is None:
-                        st.error("Ошибка при анализе изображения. Попробуйте другое изображение или перезагрузите приложение.")
+                        st.error(
+                            "Ошибка при анализе изображения. Попробуйте другое изображение или перезагрузите приложение.")
                         st.stop()
-                        
+
                 proc_time = time.time() - start
-    
+
                 col1, col2 = st.columns(2)
                 with col1:
                     st.image(image, use_container_width=True)
@@ -481,7 +502,7 @@ def main():
                         st.image(results[0].plot(), use_container_width=True)
                     else:
                         st.warning("Результаты не получены")
-    
+
                 detections = []
                 if results[0].boxes is not None:
                     model_names = results[0].names
@@ -493,7 +514,7 @@ def main():
                         if name not in unique or c > unique[name]['confidence']:
                             unique[name] = {"class": name, "confidence": c}
                     detections = sorted(unique.values(), key=lambda x: x['confidence'], reverse=True)
-    
+
                 st.markdown("---")
                 render_report_window(detections, image_name, proc_time, model_choice, conf)
             except Exception as e:
@@ -504,17 +525,17 @@ def main():
 
     with tab3:
         st.markdown("### О системе Termit Weld CV")
-        
+
         st.markdown("""
         **Назначение:** Автоматический контроль качества сварных соединений на основе компьютерного зрения.
-        
+
         ### Классифицируемые дефекты:
         - **Геометрический дефект** - нарушение формы сварного шва
         - **Непровар** - отсутствие сплавления кромок
         - **Трещина** - разрыв металла шва
         - **Пористость** - газовые поры
         - **Брызги** - частицы металла
-        
+
         ### Метрики качества (mAP@0.5):
         | Дефект | Точность |
         |--------|----------|
@@ -524,12 +545,12 @@ def main():
         | Пористость | 0.785 |
         | Брызги | 0.787 |
         | **Среднее** | **0.703** |
-        
+
         ### Технические требования:
         - Форматы: JPG, JPEG, PNG, BMP
         - Максимальный размер: 200 MB
         """)
-        
+
         st.markdown("### F-beta Score")
         st.markdown("- **F1 (beta=1)** - баланс Precision и Recall")
         st.markdown("- **F2 (beta=2)** - Recall важнее в 2 раза")
