@@ -128,7 +128,9 @@ st.markdown("""
         display: none !important;
         
     }
-
+    [data-testid="collapsedControl"] {
+    display: none !important;
+    }
 
 </style>
 """, unsafe_allow_html=True)
