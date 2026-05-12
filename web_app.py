@@ -62,195 +62,53 @@ st.set_page_config(
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    * { font-family: 'Inter', sans-serif !important; }
+    h1, h2, h3, h4 { font-family: 'Inter', sans-serif !important; font-weight: 700 !important; }
+    .stApp { background: #ffffff; }
 
-    * {
-        font-family: 'Inter', sans-serif !important;
+    .header { background: #000; padding: 30px 35px; margin-bottom: 30px; display: flex; align-items: center; }
+    .header-logo { background: #fff; color: #000; font-size: 1.6rem; font-weight: 800; width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; margin-right: 20px; }
+    .header-text h1 { color: #fff !important; margin: 0; font-size: 2rem; font-weight: 800; }
+    .header-text p { color: #999 !important; margin: 5px 0 0 0; font-size: 1rem; font-weight: 400; }
+
+    .stat-card { background: #fff; padding: 25px; border: 1px solid #e5e5e5; text-align: left; }
+    .stat-card .number { font-size: 2.8rem; font-weight: 800; color: #000; }
+    .stat-card .label { color: #888 !important; font-size: 0.85rem; margin-top: 5px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+
+    .stButton > button { background: #000 !important; color: #fff !important; border: none !important; font-weight: 600 !important; padding: 12px 30px !important; font-size: 14px !important; text-transform: uppercase !important; letter-spacing: 1px !important; }
+
+    [data-testid="stSidebar"] { background: #fafafa; border-right: 1px solid #e5e5e5; }
+    [data-testid="stSidebar"] * { color: #000 !important; }
+
+    .footer { border-top: 1px solid #e5e5e5; padding: 40px 0; margin-top: 50px; text-align: center; color: #888; }
+    .stTabs [data-baseweb="tab-list"] { gap: 0; background: transparent; padding: 0; border-bottom: 1px solid #e5e5e5; }
+    .stTabs [data-baseweb="tab"] { background: transparent; border-radius: 0; padding: 15px 25px; color: #888 !important; font-weight: 500; border-bottom: 2px solid transparent; }
+    .stTabs [aria-selected="true"] { background: transparent !important; color: #000 !important; border-bottom: 2px solid #000; font-weight: 700; }
+    img { max-height: 450px !important; object-fit: contain !important; }
+
+    [data-testid="collapsedControl"] button::before {
+    content: "≡" !important;
+    font-size: 24px !important;
+    color: #000 !important;
     }
 
-    h1, h2, h3, h4 {
-        font-family: 'Inter', sans-serif !important;
-        font-weight: 700 !important;
-    }
-
-    .stApp {
-        background: #ffffff;
-    }
-
-    /* =========================================
-       HEADER
-    ========================================= */
-
-    .header {
-        background: #000;
-        padding: 30px 35px;
-        margin-bottom: 30px;
-        display: flex;
-        align-items: center;
-    }
-
-    .header-logo {
-        background: #fff;
-        color: #000;
-        font-size: 1.6rem;
-        font-weight: 800;
-        width: 55px;
-        height: 55px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 20px;
-    }
-
-    .header-text h1 {
-        color: #fff !important;
-        margin: 0;
-        font-size: 2rem;
-        font-weight: 800;
-    }
-
-    .header-text p {
-        color: #999 !important;
-        margin: 5px 0 0 0;
-        font-size: 1rem;
-        font-weight: 400;
-    }
-
-    /* =========================================
-       SIDEBAR
-    ========================================= */
-
-    [data-testid="stSidebar"] {
-        background: #fafafa;
-        border-right: 1px solid #e5e5e5;
-    }
-
-    [data-testid="stSidebar"] * {
-        color: #000 !important;
-    }
-
-    /* УБРАТЬ keyboard_double_arrow_right */
-    [data-testid="collapsedControl"] {
+    [data-testid="stSidebar"] [class*="material-icons"],
+    [data-testid="stSidebar"] span[class*="icon"],
+    [data-testid="stSidebar"] .stSelectbox [class*="icon"],
+    [data-testid="stSidebar"] .stSlider [class*="icon"] {
         display: none !important;
     }
-
-    button[kind="header"] {
-        display: none !important;
+    
+    [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"]::after {
+        content: "▼" !important;
+        font-size: 10px !important;
+        position: absolute !important;
+        right: 10px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
     }
 
-    /* =========================================
-       BUTTONS
-    ========================================= */
-
-    .stButton > button {
-        background: #000 !important;
-        color: #fff !important;
-        border: none !important;
-        font-weight: 600 !important;
-        padding: 12px 30px !important;
-        font-size: 14px !important;
-        text-transform: uppercase !important;
-        letter-spacing: 1px !important;
-    }
-
-    /* =========================================
-       CARDS
-    ========================================= */
-
-    .stat-card {
-        background: #fff;
-        padding: 25px;
-        border: 1px solid #e5e5e5;
-        text-align: left;
-    }
-
-    .stat-card .number {
-        font-size: 2.8rem;
-        font-weight: 800;
-        color: #000;
-    }
-
-    .stat-card .label {
-        color: #888 !important;
-        font-size: 0.85rem;
-        margin-top: 5px;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    /* =========================================
-       TABS
-    ========================================= */
-
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 0;
-        background: transparent;
-        padding: 0;
-        border-bottom: 1px solid #e5e5e5;
-    }
-
-    .stTabs [data-baseweb="tab"] {
-        background: transparent;
-        border-radius: 0;
-        padding: 15px 25px;
-        color: #888 !important;
-        font-weight: 500;
-        border-bottom: 2px solid transparent;
-    }
-
-    .stTabs [aria-selected="true"] {
-        background: transparent !important;
-        color: #000 !important;
-        border-bottom: 2px solid #000;
-        font-weight: 700;
-    }
-
-    /* Убрать иконки в tabs */
-    .stTabs [data-baseweb="tab"] [class*="icon"],
-    .stTabs [data-baseweb="tab"] span,
-    .stTabs button svg,
-    .stTabs button [class*="material"] {
-        display: none !important;
-    }
-
-    /* =========================================
-       IMAGES
-    ========================================= */
-
-    img {
-        max-height: 450px !important;
-        object-fit: contain !important;
-    }
-
-    /* =========================================
-       FILE UPLOADER
-    ========================================= */
-
-    [data-testid="stFileUploader"] div[data-testid="stMarkdownContainer"] {
-        display: none !important;
-    }
-
-    .stFileUploader button span {
-        display: none !important;
-    }
-
-    .stFileUploader button {
-        width: auto !important;
-        min-width: 120px !important;
-        justify-content: center !important;
-    }
-
-    .stFileUploader button::before {
-        content: "ВЫБРАТЬ ФАЙЛ" !important;
-        font-size: 14px !important;
-        font-weight: 600 !important;
-    }
-
-    /* =========================================
-       SELECTBOX / SLIDER ICONS
-    ========================================= */
-
-    .material-icons,
+        .material-icons,
     [class*="material-icons"],
     span[class*="icon"],
     [data-testid="stSidebar"] span,
@@ -263,32 +121,18 @@ st.markdown("""
         overflow: hidden !important;
     }
 
-    [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"]::after {
-        content: "▼" !important;
-        font-size: 10px !important;
-        position: absolute !important;
-        right: 10px !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-    }
-
-    [data-testid="stSidebar"] .stSelectbox [role="presentation"],
-    [data-testid="stSidebar"] .stSelectbox [data-baseweb="icon"],
-    [data-testid="stSidebar"] .stSelectbox svg {
+        .stTabs [data-baseweb="tab"] [class*="icon"],
+        .stTabs [data-baseweb="tab"] span,
+        .stTabs button svg,
+        .stTabs button [class*="material"] {
         display: none !important;
-    }
-
-    /* =========================================
-       FOOTER
-    ========================================= */
-
-    .footer {
-        border-top: 1px solid #e5e5e5;
-        padding: 40px 0;
-        margin-top: 50px;
-        text-align: center;
-        color: #888;
-    }
+        
+   [data-testid="stSidebar"] .stSelectbox div[role="button"] span,
+[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] span,
+[data-testid="stSidebar"] select + div span {
+    display: none !important;
+    visibility: hidden !important;
+}
 
 </style>
 """, unsafe_allow_html=True)
