@@ -130,6 +130,22 @@ st.markdown("""
     .stTabs button svg,
     .stTabs button [class*="material"] {
         display: none !important;
+        
+    }
+
+        .material-icons,
+    [class*="material-icons"],
+    span[class*="icon"],
+    [data-testid="stSidebar"] span,
+    .stSelectbox span,
+    .stSlider span,
+    .stTabs span,
+    button span[class*="icon"] {
+        display: none !important;
+        font-size: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        visibility: hidden !important;
     }
 
 </style>
