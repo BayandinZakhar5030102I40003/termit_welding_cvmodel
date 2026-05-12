@@ -112,6 +112,19 @@ st.markdown("""
         transform: translateY(-50%) !important;
     }
 
+        .material-icons,
+    [class*="material-icons"],
+    span[class*="icon"],
+    [data-testid="stSidebar"] span,
+    .stSelectbox span,
+    .stSlider span {
+        font-size: 0 !important;
+        color: transparent !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+    }
+
 </style>
 """, unsafe_allow_html=True)
 # ============================================
